@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { Dashboard, Lock, Group, ModeEditOutline, Build } from "@mui/icons-material";
+import { Dashboard, Lock, Group, ModeEditOutline, Build, Book } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import { useStyles } from "./LayoutStyle";  // Asegúrate de que la importación sea correcta
 
@@ -28,6 +28,12 @@ const Navbar = () => {
           <Button component={Link} to="/dashboard/student" color="inherit" startIcon={<Group />}>
             Estudiantes
           </Button>
+          <Button component={Link} to="/dashboard/libros" color="inherit" startIcon={<Book />}>
+            Libros
+          </Button>
+          {/* <Button component={Link} to="/dashboard/libros" color="inherit" startIcon={<Book />}>
+            Libros
+          </Button> */}
           <Button component={Link} to="/dashboard/users" color="inherit" startIcon={<Lock />}>
             Usuarios
           </Button>

@@ -50,6 +50,13 @@ export const useStyles = makeStyles((theme) => ({
         fontSize: '0.9rem',
         backdropFilter: 'blur(5px)',
         boxShadow: '0px -2px 5px rgba(0, 0, 0, 0.2)'
+      },
+
+      dashboardImg:{
+        width:'100%',
+        height:'780px',
+        borderRadius: '0.5rem',
+        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
       }
       
 }));

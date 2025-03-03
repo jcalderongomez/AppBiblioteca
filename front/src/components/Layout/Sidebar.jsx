@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@mui/material";
-import { Dashboard, ChevronLeft, ChevronRight, Build } from "@mui/icons-material";
+import { Dashboard, ChevronLeft, ChevronRight, Build, BookSharp } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import GroupIcon from "@mui/icons-material/Group";
 import LockIcon from "@mui/icons-material/Lock";
@@ -24,7 +24,7 @@ const Sidebar = () => {
     >
       <div className={classes.drawerContainer}>
         <IconButton onClick={toggleSidebar} className={classes.iconButton}>
-        <span className={classes.iconText}>Contraer</span>
+          <span className={classes.iconText}>Contraer</span>
           {open ? <ChevronLeft /> : <ChevronRight />}
         </IconButton>
       </div>
@@ -73,7 +73,16 @@ const Sidebar = () => {
           </ListItemIcon>
           {open && <ListItemText primary="Estudiantes" />}
         </ListItem>
-
+        <ListItem
+          component={Link}
+          to="/dashboard/libros"
+          className={location.pathname === "/dashboard/libros" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <BookSharp className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Libros" />}
+        </ListItem>
         <ListItem
           component={Link}
           to="/dashboard/users"
