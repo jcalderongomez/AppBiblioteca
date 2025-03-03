@@ -1,14 +1,12 @@
-// src/components/Users/Users.js
 import React from "react";
-import Layout from "../Layout/Layout";
-import UserForm from "./UserForm"; // Asegúrate de importar el formulario
+import UserForm from "./UserForm"; // Importa el formulario
 
 const Users = () => {
   return (
-    <Layout>
-      <h1>Modulo para Usuarios</h1>
-      <UserForm /> {/* Aquí insertamos el formulario de creación de usuarios */}
-    </Layout>
+    <div>
+      <h1>Modulo Usuarios</h1>
+      <UserForm /> {/* Módulo para crear usuarios */}
+    </div>
   );
 };
 

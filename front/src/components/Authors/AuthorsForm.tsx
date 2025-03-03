@@ -122,7 +122,7 @@ const AuthorsForm = () => {
             onChange={handleChange}
             required
           />
-        </div>
+        </div> 
 
         <div className="form-group">
           <label htmlFor="biografia">Biografía:</label>

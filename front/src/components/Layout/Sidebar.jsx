@@ -1,59 +1,89 @@
 import React, { useState } from "react";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@mui/material";
-import { Dashboard, ChevronLeft, ChevronRight, People, Build, Person } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Dashboard, ChevronLeft, ChevronRight, Build } from "@mui/icons-material";
+import { Link, useLocation } from "react-router-dom";
+import GroupIcon from "@mui/icons-material/Group";
+import LockIcon from "@mui/icons-material/Lock";
+import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import { useStyles } from "./LayoutStyle";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true); // Controla el estado de apertura/cierre
+  const [open, setOpen] = useState(true);
+  const location = useLocation();
+  const classes = useStyles();
 
   const toggleSidebar = () => {
-    setOpen(!open); // Alterna entre abierto y cerrado
+    setOpen(!open);
   };
 
   return (
     <Drawer
       variant="permanent"
-      sx={{
-        width: open ? 240 : 60, // El ancho cambia dependiendo del estado
-        flexShrink: 0,
-        transition: "width 0.3s", // Transición suave para la expansión y contracción
-        "& .MuiDrawer-paper": {
-          width: open ? 240 : 60,
-          transition: "width 0.3s",
-          overflowX: "hidden", // Evita el desbordamiento
-        },
-      }}
+      className={`${classes.drawer} ${open ? classes.drawerOpen : classes.drawerClose}`}
+      classes={{ paper: open ? classes.drawerOpen : classes.drawerClose }}
     >
-      {/* Botón para alternar la apertura y cierre del Sidebar */}
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <IconButton onClick={toggleSidebar}>
-          {open ? <ChevronLeft /> : <ChevronRight />} {/* Icono para cerrar o abrir */}
+      <div className={classes.drawerContainer}>
+        <IconButton onClick={toggleSidebar} className={classes.iconButton}>
+        <span className={classes.iconText}>Contraer</span>
+          {open ? <ChevronLeft /> : <ChevronRight />}
         </IconButton>
       </div>
 
       <List>
-        <ListItem component={Link} to="/dashboard">
-          <ListItemIcon><Dashboard /></ListItemIcon>
+        <ListItem
+          component={Link}
+          to="/dashboard"
+          className={location.pathname === "/dashboard" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <Dashboard className={classes.iconStyle} />
+          </ListItemIcon>
           {open && <ListItemText primary="Dashboard" />}
         </ListItem>
-        <ListItem component={Link} to="/dashboard/users">
-          <ListItemIcon><People /></ListItemIcon>
-          {open && <ListItemText primary="Usuarios" />}
-        </ListItem>
-        <ListItem component={Link} to="/dashboard/student">
-          <ListItemIcon><Person /></ListItemIcon>
-          {open && <ListItemText primary="Estudiantes" />}
-        </ListItem>
-        <ListItem component={Link} to="/dashboard/authors">
-          <ListItemIcon><Person /></ListItemIcon>
+
+        <ListItem
+          component={Link}
+          to="/dashboard/authors"
+          className={location.pathname === "/dashboard/authors" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <ModeEditOutlineIcon className={classes.iconStyle} />
+          </ListItemIcon>
           {open && <ListItemText primary="Autores" />}
         </ListItem>
-        <ListItem component={Link} to="/dashboard/carreras">
-          <ListItemIcon><Build /></ListItemIcon>
+
+        <ListItem
+          component={Link}
+          to="/dashboard/carreras"
+          className={location.pathname === "/dashboard/carreras" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <Build className={classes.iconStyle} />
+          </ListItemIcon>
           {open && <ListItemText primary="Carreras" />}
         </ListItem>
 
-        {/* Agrega más elementos aquí si lo necesitas */}
+        <ListItem
+          component={Link}
+          to="/dashboard/student"
+          className={location.pathname === "/dashboard/student" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <GroupIcon className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Estudiantes" />}
+        </ListItem>
+
+        <ListItem
+          component={Link}
+          to="/dashboard/users"
+          className={location.pathname === "/dashboard/users" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <LockIcon className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Usuarios" />}
+        </ListItem>
       </List>
     </Drawer>
   );

@@ -5,11 +5,11 @@ import CarrerasForm from "./CarrerasForm";
 
 const Carreras = () => {
     return (
-        <Layout>
-            <h1>Modulo para Carreras</h1>
-            <CarrerasForm /> {/* Aquí insertamos el formulario de creación de carreras */}
-        </Layout>
-    );
+        <div>
+            <h1>Modulo Carreras</h1>
+            <CarrerasForm />
+        </div>
+    )
 };
 
 export default Carreras;

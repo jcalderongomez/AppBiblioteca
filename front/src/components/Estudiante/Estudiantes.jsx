@@ -5,10 +5,10 @@ import EstudianteForm from "./EstudianteForm";
 
 const Estudiantes = () => {
     return (
-        <Layout>
-            <h1>Módulo para Estudiantes</h1>
-            <EstudianteForm /> {/* Aquí insertamos el formulario de creación de estudiantes */}
-        </Layout>
+        <div>
+            <h1>Modulo Estudiantes</h1>
+            <EstudianteForm />
+        </div>
     );
 };
 

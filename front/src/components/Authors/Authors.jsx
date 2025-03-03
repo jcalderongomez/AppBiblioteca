@@ -5,10 +5,10 @@ import AuthorsForm from "./AuthorsForm";
 
 const Carreras = () => {
     return (
-        <Layout>
-            <h1>Modulo para Autores</h1>
+        <div>
+            <h1>Modulo Autores</h1>
             <AuthorsForm /> {/* Aquí insertamos el formulario de creación de autores */}
-        </Layout>
+        </div>
     );
 };
 
