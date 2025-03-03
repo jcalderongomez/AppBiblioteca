@@ -53,11 +53,11 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Buscar usuario en BD utilizando SQL
 	log.Println("Buscando usuario con email:", creds.Email)
-	query := "SELECT id, email, password_hash, nombre, rol FROM users WHERE email = $1 LIMIT 1"
+	query := "SELECT id, email, password_hash, nombre, rol FROM usuarios WHERE email = $1 LIMIT 1"
 	row := database.DB.QueryRow(query, creds.Email)
 
 	// Asignar los valores del usuario a la estructura storedUser
-	err = row.Scan(&storedUser.Id, &storedUser.Email, &storedUser.PasswordHash, &storedUser.Nombre, &storedUser.Rol)
+	err = row.Scan(&storedUser.ID, &storedUser.Email, &storedUser.PasswordHash, &storedUser.Nombre, &storedUser.Rol)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			log.Println("❌ Usuario no encontrado")
@@ -100,7 +100,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 		"status": "success",
 		"token":  tokenString,
 		"user": map[string]string{
-			"id":     strconv.Itoa(int(storedUser.Id)),
+			"id":     strconv.Itoa(int(storedUser.ID)),
 			"nombre": storedUser.Nombre,
 			"email":  storedUser.Email,
 			"rol":    storedUser.Rol,

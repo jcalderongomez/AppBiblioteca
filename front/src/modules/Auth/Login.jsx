@@ -7,24 +7,34 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
+      console.log("📤 Enviando credenciales:", { email, password });
       const response = await authService.login(email, password);
+
+      if (!response || !response.token) {
+        throw new Error("Respuesta inválida del servidor");
+      }
+
       console.log("📡 Respuesta del servidor:", response);
 
       // Guardar token en localStorage
       localStorage.setItem("token", response.token);
 
-      // Redirigir al dashboard o página de inicio
+      // Redirigir al dashboard
       navigate("/dashboard");
     } catch (error) {
       console.error("❌ Error en login:", error);
-      setError("Usuario o contraseña incorrectos");
+      setError(error.message || "Usuario o contraseña incorrectos");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,20 +52,22 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
           <div className="mb-3">
             <label className="form-label">Contraseña</label>
             <input
-              type="text"
+              type="password"  // 🔹 Corregido de "text" a "password"
               className="form-control"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              disabled={loading}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
-            Iniciar sesión
+          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+            {loading ? "Iniciando sesión..." : "Iniciar sesión"}
           </button>
         </form>
       </div>

@@ -32,27 +32,27 @@ const Sidebar = () => {
       </div>
 
       <List>
-      <ListItem button component={Link} to="/dashboard">
+        <ListItem component={Link} to="/dashboard">
           <ListItemIcon><Dashboard /></ListItemIcon>
-          {open && <ListItemText primary="Dashboard" />} {/* Texto solo cuando está abierto */}
+          {open && <ListItemText primary="Dashboard" />}
         </ListItem>
-        <ListItem button component={Link} to="/dashboard/users">
+        <ListItem component={Link} to="/dashboard/users">
           <ListItemIcon><People /></ListItemIcon>
-          {open && <ListItemText primary="Usuarios" />} {/* Texto solo cuando está abierto */}
+          {open && <ListItemText primary="Usuarios" />}
         </ListItem>
-        <ListItem button component={Link} to="/dashboard/student">
+        <ListItem component={Link} to="/dashboard/student">
           <ListItemIcon><Person /></ListItemIcon>
-          {open && <ListItemText primary="Estudiantes" />} {/* Texto solo cuando está abierto */}
+          {open && <ListItemText primary="Estudiantes" />}
         </ListItem>
-        <ListItem button component={Link} to="/dashboard/authors">
+        <ListItem component={Link} to="/dashboard/authors">
           <ListItemIcon><Person /></ListItemIcon>
-          {open && <ListItemText primary="Autores" />} {/* Texto solo cuando está abierto */}
+          {open && <ListItemText primary="Autores" />}
         </ListItem>
-        <ListItem button component={Link} to="/dashboard/carreras">
+        <ListItem component={Link} to="/dashboard/carreras">
           <ListItemIcon><Build /></ListItemIcon>
-          {open && <ListItemText primary="Carreras" />} {/* Texto solo cuando está abierto */}
+          {open && <ListItemText primary="Carreras" />}
         </ListItem>
-        
+
         {/* Agrega más elementos aquí si lo necesitas */}
       </List>
     </Drawer>
