@@ -13,7 +13,8 @@ import {
   TableRow,
   Paper,
   TextField,
-} from "@mui/material";
+} from "../../Commons";
+
 import { EstudianteType } from "../../interfaces/EstudianteType";
 import { CarreraType } from "../../interfaces/CarreraType";
 

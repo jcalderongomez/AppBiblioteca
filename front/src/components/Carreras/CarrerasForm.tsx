@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "../../Commons";
 import { CarreraType } from "../../interfaces/CarreraType"; // Importa la interfaz CarreraType
 
 const CarrerasForm = () => {
@@ -163,18 +164,21 @@ const CarrerasForm = () => {
                 <td>{carrera.nombre}</td>
                 <td>{carrera.descripcion}</td>
                 <td>
-                  <button
-                    className="btn btn-info mr-2"
+                  <Button
+                    variant="contained"
+                    color="primary"
                     onClick={() => handleEdit(carrera.id!)}
+                    style={{ marginRight: "10px" }}
                   >
                     Editar
-                  </button>
-                  <button
-                    className="btn btn-warning mr-2"
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="secondary"
                     onClick={() => handleDelete(carrera.id!)}
                   >
                     Eliminar
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))
