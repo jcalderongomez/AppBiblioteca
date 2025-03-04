@@ -10,11 +10,12 @@ import (
 	"github.com/gorilla/mux"
 )
 func GetEstudiantes(w http.ResponseWriter, r *http.Request) {
-    query := `SELECT estudiantes.id, estudiantes.nombre, estudiantes.email, 
-                     estudiantes.carrera_id, 
-                     carreras.id AS carrera_id, carreras.nombre AS carrera_nombre, carreras.descripcion AS carrera_descripcion
-              FROM estudiantes
-              JOIN carreras ON estudiantes.carrera_id = carreras.id`
+    query := `SELECT u.id, u.nombre, u.email,u.id_carrera, 
+				carreras.id AS id_carrera, 
+				carreras.nombre AS carrera_nombre, 
+				carreras.descripcion AS carrera_descripcion
+              	FROM usuarios u
+              	JOIN carreras ON u.id_carrera = carreras.id`
 
     rows, err := database.DB.Query(query)
     if err != nil {
@@ -65,7 +66,7 @@ func CreateEstudiante(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	query := "INSERT INTO estudiantes (nombre, email, carrera_id) VALUES ($1, $2, $3) RETURNING id"
+	query := "INSERT INTO usuarios (nombre, email, id_carrera) VALUES ($1, $2, $3) RETURNING id"
 	err := database.DB.QueryRow(query, estudiante.Nombre, estudiante.Email, estudiante.CarreraId).Scan(&estudiante.Id)
 	if err != nil {
 		http.Error(w, "Error al crear el estudiante", http.StatusInternalServerError)
@@ -86,7 +87,7 @@ func GetEstudianteByID(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	query := "SELECT id, nombre, email, carrera_id FROM estudiantes WHERE id = $1"
+	query := "SELECT id, nombre, email, id_carrera FROM usuarios WHERE id = $1"
 	var estudiante models.Estudiante
 	err = database.DB.QueryRow(query, estudianteID).Scan(&estudiante.Id, &estudiante.Nombre, &estudiante.Email, &estudiante.CarreraId)
 	if err != nil {
@@ -113,7 +114,7 @@ func UpdateEstudiante(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	query := "UPDATE estudiantes SET nombre = $1, email = $2, carrera_id = $3 WHERE id = $4"
+	query := "UPDATE usuarios SET nombre = $1, email = $2, id_carrera = $3 WHERE id = $4"
 	_, err = database.DB.Exec(query, estudiante.Nombre, estudiante.Email, estudiante.CarreraId, estudianteID)
 	if err != nil {
 		http.Error(w, "Error al actualizar el estudiante", http.StatusInternalServerError)
@@ -133,7 +134,7 @@ func DeleteEstudiante(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	query := "DELETE FROM estudiantes WHERE id = $1"
+	query := "DELETE FROM usuarios WHERE id = $1"
 	_, err = database.DB.Exec(query, estudianteID)
 	if err != nil {
 		http.Error(w, "Error al eliminar el estudiante", http.StatusInternalServerError)

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@mui/material";
-import { Dashboard, ChevronLeft, ChevronRight, Build, BookSharp } from "@mui/icons-material";
+import { Dashboard, ChevronLeft, ChevronRight, Build, BookSharp, BookmarkBorder } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
 import GroupIcon from "@mui/icons-material/Group";
 import LockIcon from "@mui/icons-material/Lock";
@@ -92,6 +92,16 @@ const Sidebar = () => {
             <LockIcon className={classes.iconStyle} />
           </ListItemIcon>
           {open && <ListItemText primary="Usuarios" />}
+        </ListItem>
+        <ListItem
+          component={Link}
+          to="/dashboard/prestamos"
+          className={location.pathname === "/dashboard/prestamos" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <BookmarkBorder className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Prestamos" />}
         </ListItem>
       </List>
     </Drawer>
