@@ -86,6 +86,8 @@ const EstudianteForm = () => {
       setEstudiantesList(estudiantesMapeados);
     } catch (error) {
       console.error("Error al cargar los estudiantes:", error);
+
+      
     }
   };
 
