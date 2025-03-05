@@ -13,7 +13,7 @@ import {
   TableRow,
   Paper,
   TextField,
-} from "../../Commons";
+} from "@mui/material";
 
 import { EstudianteType } from "../../interfaces/EstudianteType";
 import { CarreraType } from "../../interfaces/CarreraType";
@@ -37,7 +37,13 @@ const EstudianteForm = () => {
   // Cargar carreras desde la API
   const fetchCarreras = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/carreras");
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/carreras", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
 
       if (Array.isArray(data.carreras)) {
@@ -53,7 +59,13 @@ const EstudianteForm = () => {
   // Cargar estudiantes desde la API
   const fetchEstudiantes = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/estudiantes");
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5000/api/estudiantes", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
       const data = await response.json();
 
       // Mapeamos la respuesta
@@ -114,9 +126,13 @@ const EstudianteForm = () => {
     };
 
     try {
+      const token = localStorage.getItem("token"); // Obtener token
       const response = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          Authorization: `Bearer ${token}`, // Agregar token en la
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(estudianteData),
       });
 
@@ -139,9 +155,16 @@ const EstudianteForm = () => {
     if (!id) return;
 
     try {
+      const token = localStorage.getItem("token"); // Obtener token
       const response = await fetch(
         `http://localhost:5000/api/estudiantes/${id}`,
-        { method: "DELETE" }
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`, // Agregar token en la
+            "Content-Type": "application/json",
+          },
+        }
       );
 
       if (response.ok) {

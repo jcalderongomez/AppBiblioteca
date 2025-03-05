@@ -43,8 +43,8 @@ const Sidebar = () => {
 
         <ListItem
           component={Link}
-          to="/dashboard/authors"
-          className={location.pathname === "/dashboard/authors" ? classes.activeListItem : classes.listItem}
+          to="/dashboard/autores"
+          className={location.pathname === "/dashboard/autores" ? classes.activeListItem : classes.listItem}
         >
           <ListItemIcon>
             <ModeEditOutlineIcon className={classes.iconStyle} />
@@ -65,8 +65,8 @@ const Sidebar = () => {
 
         <ListItem
           component={Link}
-          to="/dashboard/student"
-          className={location.pathname === "/dashboard/student" ? classes.activeListItem : classes.listItem}
+          to="/dashboard/estudiantes"
+          className={location.pathname === "/dashboard/estudiantes" ? classes.activeListItem : classes.listItem}
         >
           <ListItemIcon>
             <GroupIcon className={classes.iconStyle} />
@@ -91,7 +91,7 @@ const Sidebar = () => {
           <ListItemIcon>
             <LockIcon className={classes.iconStyle} />
           </ListItemIcon>
-          {open && <ListItemText primary="Usuarios" />}
+          {open && <ListItemText primary="Usuarios Aplicacion" />}
         </ListItem>
         <ListItem
           component={Link}
@@ -101,7 +101,18 @@ const Sidebar = () => {
           <ListItemIcon>
             <BookmarkBorder className={classes.iconStyle} />
           </ListItemIcon>
-          {open && <ListItemText primary="Prestamos" />}
+          {open && <ListItemText primary="Prestamos de Libros" />}
+        </ListItem>
+
+        <ListItem
+          component={Link}
+          to="/dashboard/categorias"
+          className={location.pathname === "/dashboard/categorias" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <BookmarkBorder className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Categoria de Libros" />}
         </ListItem>
       </List>
     </Drawer>

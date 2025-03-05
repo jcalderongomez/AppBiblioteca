@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -16,8 +17,8 @@ type Claims struct {
 
 // GenerateJWT genera un token JWT válido por 1 hora
 func GenerateJWT(email string) (string, error) {
-	expirationTime := time.Now().Add(1 * time.Hour)
-
+	expirationTime := time.Now().Add(3 * time.Hour)
+	fmt.Println("expirationTime: ", expirationTime)
 	claims := &Claims{
 		Email: email,
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -26,5 +27,6 @@ func GenerateJWT(email string) (string, error) {
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	fmt.Println("token: ", token)
 	return token.SignedString(JWTKey)
 }

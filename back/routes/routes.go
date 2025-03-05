@@ -37,6 +37,9 @@ func SetupRoutes() *mux.Router {
 	protected.HandleFunc("/libros", controllers.GetBooks).Methods(http.MethodGet)
 	protected.HandleFunc("/libros", controllers.CreateBook).Methods(http.MethodPost)
 	protected.HandleFunc("/libros/{id:[0-9]+}", controllers.GetBookById).Methods(http.MethodGet)
+	protected.HandleFunc("/libros/{id:[0-9]+}", controllers.UpdateLibro).Methods(http.MethodPut)
+	protected.HandleFunc("/libros/{id:[0-9]+}", controllers.DeleteLibro).Methods(http.MethodDelete)
+	protected.HandleFunc("/libros", controllers.DeleteAllLibros).Methods(http.MethodDelete)
 
 	// 🔹 Rutas de Estudiantes
 	protected.HandleFunc("/estudiantes", controllers.CreateEstudiante).Methods(http.MethodPost)
@@ -51,6 +54,13 @@ func SetupRoutes() *mux.Router {
 	protected.HandleFunc("/carreras", controllers.CreateCarrera).Methods(http.MethodPost)
 	protected.HandleFunc("/carreras/{id:[0-9]+}", controllers.UpdateCarrera).Methods(http.MethodPut)
 	protected.HandleFunc("/carreras/{id:[0-9]+}", controllers.DeleteCarrera).Methods(http.MethodDelete)
+
+	// 🔹 Rutas de Categorias
+	protected.HandleFunc("/categorias", controllers.GetCategorias).Methods(http.MethodGet)
+	protected.HandleFunc("/categorias/{id:[0-9]+}", controllers.GetCategoriaByID).Methods(http.MethodGet)
+	protected.HandleFunc("/categorias", controllers.CreateCategoria).Methods(http.MethodPost)
+	protected.HandleFunc("/categorias/{id:[0-9]+}", controllers.UpdateCategoria).Methods(http.MethodPut)
+	protected.HandleFunc("/categorias/{id:[0-9]+}", controllers.DeleteCategoria).Methods(http.MethodDelete)
 
 	return router
 }

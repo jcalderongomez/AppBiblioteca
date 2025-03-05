@@ -6,6 +6,7 @@ import (
 	"backend/utils"
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -57,7 +58,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Generar JWT
-	expirationTime := time.Now().Add(1 * time.Hour)
+	expirationTime := time.Now().Add(3 * time.Hour)
+	fmt.Println("expirationTime:", expirationTime)
 	claims := &utils.Claims{
 		Email: storedUser.Email,
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -67,6 +69,7 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	tokenString, err := token.SignedString([]byte(secret))
+	fmt.Println("tokenString:", tokenString)
 	if err != nil {
 		log.Println("❌ Error generando token:", err)
 		http.Error(w, "Error al generar el token", http.StatusInternalServerError)

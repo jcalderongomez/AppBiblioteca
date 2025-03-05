@@ -4,8 +4,8 @@ import authService from "../../services/authService";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@example.com");
+  const [password, setPassword] = useState("Clave123");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -49,7 +49,8 @@ const Login = () => {
             <input
               type="email"
               className="form-control"
-              value={email}
+              // value={email}
+              value="admin@example.com"
               onChange={(e) => setEmail(e.target.value)}
               required
               disabled={loading}
@@ -60,7 +61,8 @@ const Login = () => {
             <input
               type="password"  // 🔹 Corregido de "text" a "password"
               className="form-control"
-              value={password}
+              // value={password}
+              value="Clave123"
               onChange={(e) => setPassword(e.target.value)}
               required
               disabled={loading}
