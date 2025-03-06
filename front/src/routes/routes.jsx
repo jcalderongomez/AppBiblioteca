@@ -9,6 +9,8 @@ import Estudiantes from "../components/Estudiante/Estudiantes"; // Importar Estu
 import Autores from "../components/Autores/Autores"; // Importar Autores
 import Carreras from "../components/Carreras/Carreras"; // Importar Carreras 
 import Categorias from "../components/Categorias/Categorias"; // Importar Categorias 
+
+import Prestamos from "../components/Prestamos/Prestamos"; // Importar Categorias 
 import HomeDashboard from "../components/Dashboard/HomeDashboard"
 import PrivateRoute from "./PrivateRoute"
 const RoutesApp = () => {
@@ -26,6 +28,7 @@ const RoutesApp = () => {
             <Route path="autores" element={<Autores />} />
             <Route path="carreras" element={<Carreras />} />
             <Route path="categorias" element={<Categorias />} />
+            <Route path="prestamos" element={<Prestamos />} />
             <Route path="logout" element={<Logout />} />
           </Route>
         </Route>
