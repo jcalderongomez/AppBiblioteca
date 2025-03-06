@@ -1,14 +1,8 @@
 import React, { useState } from "react";
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from "@mui/material";
-import { Dashboard, ChevronLeft, ChevronRight, Build, BookSharp, BookmarkBorder } from "@mui/icons-material";
 import { Link, useLocation } from "react-router-dom";
-import GroupIcon from "@mui/icons-material/Group";
-import LockIcon from "@mui/icons-material/Lock";
-import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
-import KeyIcon from '@mui/icons-material/Key';
-import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
-import ConstructionIcon from '@mui/icons-material/Construction';
 import { useStyles } from "./LayoutStyle";
+import MaterialUI from "../../Commons/MaterialUI";
+
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -20,116 +14,116 @@ const Sidebar = () => {
   };
 
   return (
-    <Drawer
+    <MaterialUI.Drawer
       variant="permanent"
       className={`${classes.drawer} ${open ? classes.drawerOpen : classes.drawerClose}`}
       classes={{ paper: open ? classes.drawerOpen : classes.drawerClose }}
     >
       <div className={classes.drawerContainer}>
-        <IconButton onClick={toggleSidebar} className={classes.iconButton}>
+        <MaterialUI.IconButton onClick={toggleSidebar} className={classes.iconButton}>
           <span className={classes.iconText}>Contraer</span>
-          {open ? <ChevronLeft /> : <ChevronRight />}
-        </IconButton>
+          {open ? <MaterialUI.ChevronLeft /> : <MaterialUI.ChevronRight />}
+        </MaterialUI.IconButton>
       </div>
 
-      <List>
-        <ListItem
+      <MaterialUI.List>
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard"
           className={location.pathname === "/dashboard" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <Dashboard className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Dashboard" />}
-        </ListItem>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.Dashboard className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Dashboard" />}
+        </MaterialUI.ListItem>
 
-        <ListItem
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/autores"
           className={location.pathname === "/dashboard/autores" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <ModeEditOutlineIcon className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Autores" />}
-        </ListItem>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.ModeEditOutlineIcon className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Autores" />}
+        </MaterialUI.ListItem>
 
-        <ListItem
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/carreras"
           className={location.pathname === "/dashboard/carreras" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <Build className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Carreras" />}
-        </ListItem>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.Build className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Carreras" />}
+        </MaterialUI.ListItem>
 
-        <ListItem
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/estudiantes"
           className={location.pathname === "/dashboard/estudiantes" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <GroupIcon className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Estudiantes" />}
-        </ListItem>
-        <ListItem
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.GroupIcon className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Estudiantes" />}
+        </MaterialUI.ListItem>
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/libros"
           className={location.pathname === "/dashboard/libros" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <BookSharp className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Libros" />}
-        </ListItem>
-        <ListItem
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.BookSharp className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Libros" />}
+        </MaterialUI.ListItem>
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/users"
           className={location.pathname === "/dashboard/users" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <LockIcon className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Users App" />}
-        </ListItem>
-        <ListItem
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.LockIcon className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Users App" />}
+        </MaterialUI.ListItem>
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/prestamos"
           className={location.pathname === "/dashboard/prestamos" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <ConstructionIcon className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Prestamos" />}
-        </ListItem>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.ConstructionIcon className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Prestamos" />}
+        </MaterialUI.ListItem>
 
-        <ListItem
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/categorias"
           className={location.pathname === "/dashboard/categorias" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <BookmarkBorder className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Categoria de Libros" />}
-        </ListItem>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.BookmarkBorder className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Categoria de Libros" />}
+        </MaterialUI.ListItem>
 
-        <ListItem
+        <MaterialUI.ListItem
           component={Link}
           to="/dashboard/logout"
           className={location.pathname === "/dashboard/logout" ? classes.activeListItem : classes.listItem}
         >
-          <ListItemIcon>
-            <KeyIcon className={classes.iconStyle} />
-          </ListItemIcon>
-          {open && <ListItemText primary="Cerrar sesion" />}
-        </ListItem>
-      </List>
-    </Drawer>
+          <MaterialUI.ListItemIcon>
+            <MaterialUI.KeyIcon className={classes.iconStyle} />
+          </MaterialUI.ListItemIcon>
+          {open && <MaterialUI.ListItemText primary="Cerrar sesion" />}
+        </MaterialUI.ListItem>
+      </MaterialUI.List>
+    </MaterialUI.Drawer>
   );
 };
 
