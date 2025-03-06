@@ -7,6 +7,7 @@ import LockIcon from "@mui/icons-material/Lock";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
 import KeyIcon from '@mui/icons-material/Key';
 import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
+import ConstructionIcon from '@mui/icons-material/Construction';
 import { useStyles } from "./LayoutStyle";
 
 const Sidebar = () => {
@@ -101,7 +102,7 @@ const Sidebar = () => {
           className={location.pathname === "/dashboard/prestamos" ? classes.activeListItem : classes.listItem}
         >
           <ListItemIcon>
-            <SettingsPowerIcon className={classes.iconStyle} />
+            <ConstructionIcon className={classes.iconStyle} />
           </ListItemIcon>
           {open && <ListItemText primary="Prestamos" />}
         </ListItem>
