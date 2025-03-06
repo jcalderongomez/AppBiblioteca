@@ -4,6 +4,7 @@ import Dashboard from "../components/Dashboard/Dashboard/"; // Importar el Dashb
 import Users from "../components/Users/Users"; // Importar Usuarios
 import Libros from "../components/Libros/Libros"; // Importar Libros
 import Login from "../modules/Auth/Login"; // Importar Login
+import Logout from "../modules/Auth/Logout"; // Importar Login
 import Estudiantes from "../components/Estudiante/Estudiantes"; // Importar Estudiantes
 import Autores from "../components/Autores/Autores"; // Importar Autores
 import Carreras from "../components/Carreras/Carreras"; // Importar Carreras 
@@ -25,6 +26,7 @@ const RoutesApp = () => {
             <Route path="autores" element={<Autores />} />
             <Route path="carreras" element={<Carreras />} />
             <Route path="categorias" element={<Categorias />} />
+            <Route path="logout" element={<Logout />} />
           </Route>
         </Route>
 

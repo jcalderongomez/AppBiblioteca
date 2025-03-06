@@ -114,6 +114,17 @@ const Sidebar = () => {
           </ListItemIcon>
           {open && <ListItemText primary="Categoria de Libros" />}
         </ListItem>
+        
+        <ListItem
+          component={Link}
+          to="/dashboard/logout"
+          className={location.pathname === "/dashboard/logout" ? classes.activeListItem : classes.listItem}
+        >
+          <ListItemIcon>
+            <BookmarkBorder className={classes.iconStyle} />
+          </ListItemIcon>
+          {open && <ListItemText primary="Cerrar sesion" />}
+        </ListItem>
       </List>
     </Drawer>
   );
