@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { AutorType } from "../../interfaces/AutorType"; // Importa la interfaz AuthorType
+import MaterialUI from "../../Commons/MaterialUI";
 
 const AutoresForm = () => {
+  const [open, setOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [autor, setAuthor] = useState<AutorType>({
     id: null,
     nombre: "",
@@ -124,7 +127,8 @@ const AutoresForm = () => {
         );
       } else {
         // Si la eliminación no fue exitosa, mostrar error
-        console.log("Error al eliminar el autor");
+        setErrorMessage("Error al eliminar el autor.");
+        setOpen(true);
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -197,7 +201,9 @@ const AutoresForm = () => {
                 <td>{autor.id}</td>
                 <td>{autor.nombre}</td>
                 <td>{autor.nacionalidad}</td>
-                <td>{new Date(autor.fecha_nacimiento).toISOString().split("T")[0]}</td>
+                <td>
+                  {new Date(autor.fecha_nacimiento).toISOString().split("T")[0]}
+                </td>
                 <td>
                   <button
                     className="btn btn-info mr-2"
@@ -211,6 +217,15 @@ const AutoresForm = () => {
                   >
                     Eliminar
                   </button>
+                  <MaterialUI.Snackbar
+                    open={open}
+                    autoHideDuration={2000}
+                    onClose={() => setOpen(false)}
+                  >
+                    <MaterialUI.Alert severity="error" onClose={() => setOpen(false)}>
+                      {errorMessage}
+                    </MaterialUI.Alert>
+                  </MaterialUI.Snackbar>
                 </td>
               </tr>
             ))

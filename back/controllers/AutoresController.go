@@ -4,6 +4,7 @@ import (
 	"backend/database"
 	"backend/models"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -114,7 +115,6 @@ func UpdateAuthor(w http.ResponseWriter, r *http.Request) {
 	})
 }
 
-
 // Eliminar un autor por ID
 func DeleteAuthor(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -125,6 +125,7 @@ func DeleteAuthor(w http.ResponseWriter, r *http.Request) {
 	}
 
 	query := "DELETE FROM autores WHERE id = $1"
+	fmt.Println("Query:", query)
 	_, err = database.DB.Exec(query, authorID)
 	if err != nil {
 		http.Error(w, "Error al eliminar el autor", http.StatusInternalServerError)
