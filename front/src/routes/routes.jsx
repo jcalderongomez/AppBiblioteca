@@ -9,22 +9,27 @@ import Autores from "../components/Autores/Autores"; // Importar Autores
 import Carreras from "../components/Carreras/Carreras"; // Importar Carreras 
 import Categorias from "../components/Categorias/Categorias"; // Importar Categorias 
 import HomeDashboard from "../components/Dashboard/HomeDashboard"
-
+import PrivateRoute from "./PrivateRoute"
 const RoutesApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} /> {/* Página de login */}
-      <Route path="/dashboard" element={<Dashboard />}>
-        {/* Las rutas internas del Dashboard */}
-        <Route index element={<HomeDashboard />} /> {/* Ruta interna para Usuarios */}
+      {/* Rutas privadas */}
+      <Route element={<PrivateRoute />}>
+        <Route element={<PrivateRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route index element={<HomeDashboard />} />
+            <Route path="users" element={<Users />} />
+            <Route path="libros" element={<Libros />} />
+            <Route path="estudiantes" element={<Estudiantes />} />
+            <Route path="autores" element={<Autores />} />
+            <Route path="carreras" element={<Carreras />} />
+            <Route path="categorias" element={<Categorias />} />
+          </Route>
+        </Route>
 
-        <Route path="autores" element={<Autores />} /> {/* Ruta interna para autores */}
-        <Route path="categorias" element={<Categorias />} /> {/*Ruta interna para Categorias */}
-        <Route path="carreras" element={<Carreras />} /> {/* Ruta interna para carreras */}
-        <Route path="libros" element={<Libros />} /> {/* Ruta interna para Libros */}
-        <Route path="users" element={<Users />} /> {/* Ruta interna para Usuarios */}
-        <Route path="estudiantes" element={<Estudiantes />} /> {/* Ruta interna para estudiantes */}
       </Route>
+
     </Routes>
   );
 };
