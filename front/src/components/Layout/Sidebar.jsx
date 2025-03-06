@@ -5,6 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 import GroupIcon from "@mui/icons-material/Group";
 import LockIcon from "@mui/icons-material/Lock";
 import ModeEditOutlineIcon from "@mui/icons-material/ModeEditOutline";
+import KeyIcon from '@mui/icons-material/Key';
+import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
 import { useStyles } from "./LayoutStyle";
 
 const Sidebar = () => {
@@ -99,7 +101,7 @@ const Sidebar = () => {
           className={location.pathname === "/dashboard/prestamos" ? classes.activeListItem : classes.listItem}
         >
           <ListItemIcon>
-            <BookmarkBorder className={classes.iconStyle} />
+            <SettingsPowerIcon className={classes.iconStyle} />
           </ListItemIcon>
           {open && <ListItemText primary="Prestamos de Libros" />}
         </ListItem>
@@ -121,7 +123,7 @@ const Sidebar = () => {
           className={location.pathname === "/dashboard/logout" ? classes.activeListItem : classes.listItem}
         >
           <ListItemIcon>
-            <BookmarkBorder className={classes.iconStyle} />
+            <KeyIcon className={classes.iconStyle} />
           </ListItemIcon>
           {open && <ListItemText primary="Cerrar sesion" />}
         </ListItem>
