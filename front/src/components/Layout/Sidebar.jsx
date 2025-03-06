@@ -93,7 +93,7 @@ const Sidebar = () => {
           <ListItemIcon>
             <LockIcon className={classes.iconStyle} />
           </ListItemIcon>
-          {open && <ListItemText primary="Usuarios Aplicacion" />}
+          {open && <ListItemText primary="Users App" />}
         </ListItem>
         <ListItem
           component={Link}
@@ -103,7 +103,7 @@ const Sidebar = () => {
           <ListItemIcon>
             <SettingsPowerIcon className={classes.iconStyle} />
           </ListItemIcon>
-          {open && <ListItemText primary="Prestamos de Libros" />}
+          {open && <ListItemText primary="Prestamos" />}
         </ListItem>
 
         <ListItem
@@ -116,7 +116,7 @@ const Sidebar = () => {
           </ListItemIcon>
           {open && <ListItemText primary="Categoria de Libros" />}
         </ListItem>
-        
+
         <ListItem
           component={Link}
           to="/dashboard/logout"

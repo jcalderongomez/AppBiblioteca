@@ -4,6 +4,8 @@ import { Dashboard, Lock, Group, ModeEditOutline, Build, Book } from "@mui/icons
 
 import KeyIcon from '@mui/icons-material/Key';
 import BookmarkBorder from '@mui/icons-material/BookmarkBorder';
+import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
+
 import { Link } from "react-router-dom";
 import { useStyles } from "./LayoutStyle";  // Asegúrate de que la importación sea correcta
 
@@ -36,6 +38,9 @@ const Navbar = () => {
           </Button>
           <Button component={Link} to="/dashboard/users" color="inherit" startIcon={<Lock />}>
             Users APP
+          </Button>
+          <Button component={Link} to="/dashboard/users" color="inherit" startIcon={<SettingsPowerIcon />}>
+            Prestamos
           </Button>
           <Button component={Link} to="/dashboard/categorias" color="inherit" startIcon={<BookmarkBorder />}>
             Categorias
