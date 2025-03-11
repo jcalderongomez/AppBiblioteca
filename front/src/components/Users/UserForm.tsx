@@ -9,7 +9,7 @@ import {
   FormHelperText,
   SelectChangeEvent,
 } from "@mui/material";
-import { useStyles } from "./UserStyles";  // Asegúrate de que la importación sea correcta
+import { useStyles } from "./UserStyles"; // Asegúrate de que la importación sea correcta
 
 const UserForm = () => {
   const [formData, setFormData] = useState({
@@ -19,11 +19,11 @@ const UserForm = () => {
     role: "",
   });
 
-  const classes = useStyles();  // Aquí obtienes las clases
+  const classes = useStyles(); // Aquí obtienes las clases
 
   const [error, setError] = useState<string | null>(null);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -32,7 +32,7 @@ const UserForm = () => {
     setFormData({ ...formData, role: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
 
     if (
@@ -53,7 +53,7 @@ const UserForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={classes.form}  // Aplicamos el estilo 'form'
+      className={classes.form} // Aplicamos el estilo 'form'
     >
       <TextField
         label="Nombre"
@@ -63,7 +63,7 @@ const UserForm = () => {
         onChange={handleInputChange}
         fullWidth
         required
-        className={classes.body}  // Aplicamos el estilo 'body'
+        className={classes.body} // Aplicamos el estilo 'body'
       />
       <TextField
         label="Correo electrónico"
@@ -74,7 +74,7 @@ const UserForm = () => {
         fullWidth
         type="email"
         required
-        className={classes.body}  // Aplicamos el estilo 'body'
+        className={classes.body} // Aplicamos el estilo 'body'
       />
       <TextField
         label="Contraseña"
@@ -85,7 +85,7 @@ const UserForm = () => {
         fullWidth
         type="password"
         required
-        className={classes.body}  // Aplicamos el estilo 'body'
+        className={classes.body} // Aplicamos el estilo 'body'
       />
       <FormControl fullWidth required>
         <InputLabel>Rol</InputLabel>
@@ -104,7 +104,7 @@ const UserForm = () => {
         type="submit"
         variant="contained"
         color="primary"
-        className={classes.button}  // Aplicamos el estilo 'button'
+        className={classes.button} // Aplicamos el estilo 'button'
       >
         Crear Usuario
       </Button>

@@ -60,17 +60,6 @@ INSERT INTO autores (nombre, nacionalidad, fecha_nacimiento) VALUES
 ('Gabriel García Márquez', 'Colombiano', '1927-03-06'),
 ('J.K. Rowling', 'Británica', '1965-07-31');
 
-
--- Crear tabla de Libros
-CREATE TABLE libros (
-    id SERIAL PRIMARY KEY,
-    titulo VARCHAR(150) NOT NULL,
-    id_autor INT REFERENCES autores(id) ON DELETE SET NULL,
-    anio_publicacion INT,
-    genero VARCHAR(50),
-    cantidad_disponible INT CHECK (cantidad_disponible >= 0)
-);
-
 INSERT INTO autores (nombre, nacionalidad, fecha_nacimiento) VALUES
 ('Gabriel García Márquez', 'Colombiana', '1927-03-06'),
 ('Mario Vargas Llosa', 'Peruana', '1936-03-28'),
