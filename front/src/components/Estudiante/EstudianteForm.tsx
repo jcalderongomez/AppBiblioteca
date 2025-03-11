@@ -17,6 +17,7 @@ import {
 
 import { EstudianteType } from "../../interfaces/EstudianteType";
 import { CarreraType } from "../../interfaces/CarreraType";
+import {API_URL} from "../../config/config";
 
 const EstudianteForm = () => {
   const [estudiante, setEstudiante] = useState<EstudianteType>({
@@ -38,7 +39,7 @@ const EstudianteForm = () => {
   const fetchCarreras = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/carreras", {
+      const response = await fetch(`${API_URL}/carreras`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -60,7 +61,7 @@ const EstudianteForm = () => {
   const fetchEstudiantes = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/estudiantes", {
+      const response = await fetch(`${API_URL}/estudiantes`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -116,8 +117,8 @@ const EstudianteForm = () => {
     // Verificar si es una actualización o un nuevo estudiante
     const isUpdating = estudiante.ID !== null && estudiante.ID !== undefined;
     const url = isUpdating
-      ? `http://localhost:5000/api/estudiantes/${estudiante.ID}`
-      : "http://localhost:5000/api/estudiantes";
+      ? `${API_URL}/estudiantes/${estudiante.ID}`
+      : `${API_URL}/estudiantes`;
     const method = isUpdating ? "PUT" : "POST";
 
     // Asegurar que solo enviamos el ID de la carrera
@@ -159,7 +160,7 @@ const EstudianteForm = () => {
     try {
       const token = localStorage.getItem("token"); // Obtener token
       const response = await fetch(
-        `http://localhost:5000/api/estudiantes/${id}`,
+        `${API_URL}/estudiantes/${id}`,
         {
           method: "DELETE",
           headers: {

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api"; // Asegúrate de que la URL sea correcta
+const API_URL = `${API_URL}`; // Asegúrate de que la URL sea correcta
 
 const login = async (email, password) => {
   try {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { CarreraType } from "../../interfaces/CarreraType"; // Importa la interfaz CarreraType
 import { Button } from "@mui/material";
-
+import { API_URL } from "../../config/config";
 const CarrerasForm = () => {
   const [carrera, setCarrera] = useState<CarreraType>({
     id: undefined,
@@ -18,7 +18,7 @@ const CarrerasForm = () => {
   const fetchCarreras = async () => {
     try {
       const token = localStorage.getItem("token"); // Obtener token
-      const response = await fetch("http://localhost:5000/api/carreras", {
+      const response = await fetch(`${API_URL}/carreras`, {
         headers: {
           Authorization: `Bearer ${token}`, // Agregar token en la cabecera
           "Content-Type": "application/json",
@@ -62,8 +62,8 @@ const CarrerasForm = () => {
 
     const method = carrera.id ? "PUT" : "POST";
     const url = carrera.id
-      ? `http://localhost:5000/api/carreras/${carrera.id}`
-      : "http://localhost:5000/api/carreras";
+      ? `${API_URL}/carreras/${carrera.id}`
+      : `${API_URL}/carreras`;
 
     try {
       const token = localStorage.getItem("token"); // Obtener token
@@ -97,12 +97,11 @@ const CarrerasForm = () => {
   const handleDelete = async (id: number) => {
     console.log("eliminar:", id);
     if (id !== null) {
-      
       const token = localStorage.getItem("token"); // Obtener token
-      const response = await fetch(`http://localhost:5000/api/carreras/${id}`, {
+      const response = await fetch(`${API_URL}/carreras/${id}`, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`, // Agregar token en la    
+          Authorization: `Bearer ${token}`, // Agregar token en la
           "Content-Type": "application/json",
         },
       });

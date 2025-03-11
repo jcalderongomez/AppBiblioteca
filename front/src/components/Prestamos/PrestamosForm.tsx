@@ -17,7 +17,7 @@ import {
 
 import { EstudianteType } from "../../interfaces/EstudianteType";
 import { CarreraType } from "../../interfaces/CarreraType";
-
+import { API_URL } from "../../config/config";
 const PrestamosForm = () => {
   const [estudiante, setEstudiante] = useState<EstudianteType>({
     ID: null,
@@ -38,7 +38,7 @@ const PrestamosForm = () => {
   const fetchCarreras = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/carreras", {
+      const response = await fetch(`${API_URL}/carreras`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const PrestamosForm = () => {
   const fetchEstudiantes = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/estudiantes", {
+      const response = await fetch(`${API_URL}/estudiantes`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -86,8 +86,6 @@ const PrestamosForm = () => {
       setEstudiantesList(estudiantesMapeados);
     } catch (error) {
       console.error("Error al cargar los estudiantes:", error);
-
-      
     }
   };
 
@@ -116,8 +114,8 @@ const PrestamosForm = () => {
     // Verificar si es una actualización o un nuevo estudiante
     const isUpdating = estudiante.ID !== null && estudiante.ID !== undefined;
     const url = isUpdating
-      ? `http://localhost:5000/api/estudiantes/${estudiante.ID}`
-      : "http://localhost:5000/api/estudiantes";
+      ? `${API_URL}/estudiantes/${estudiante.ID}`
+      : `${API_URL}/estudiantes`;
     const method = isUpdating ? "PUT" : "POST";
 
     // Asegurar que solo enviamos el ID de la carrera
@@ -158,16 +156,13 @@ const PrestamosForm = () => {
 
     try {
       const token = localStorage.getItem("token"); // Obtener token
-      const response = await fetch(
-        `http://localhost:5000/api/estudiantes/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`, // Agregar token en la
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${API_URL}estudiantes/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`, // Agregar token en la
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         fetchEstudiantes();

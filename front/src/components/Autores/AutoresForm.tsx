@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AutorType } from "../../interfaces/AutorType"; // Importa la interfaz AuthorType
 import MaterialUI from "../../Commons/MaterialUI";
+import { API_URL } from "../../config/config";
 
 const AutoresForm = () => {
   const [open, setOpen] = useState(false);
@@ -20,7 +21,7 @@ const AutoresForm = () => {
       try {
         const token = localStorage.getItem("token"); // Obtener token
 
-        const response = await fetch("http://localhost:5000/api/autores", {
+        const response = await fetch(`${API_URL}/autores`, {
           headers: {
             Authorization: `Bearer ${token}`, // Agregar token en la cabecera
             "Content-Type": "application/json",
@@ -53,8 +54,8 @@ const AutoresForm = () => {
     // Verifica si existe un id para decidir si es actualización o creación
     const method = autor.id ? "PUT" : "POST";
     const url = autor.id
-      ? `http://localhost:5000/api/autores/${autor.id}`
-      : "http://localhost:5000/api/autores";
+      ? `${API_URL}/autores/${autor.id}`
+      : `${API_URL}/autores`;
 
     try {
       const token = localStorage.getItem("token"); // Obtener token
@@ -108,7 +109,7 @@ const AutoresForm = () => {
     try {
       const token = localStorage.getItem("token"); // Obtener token
       // Enviar solicitud DELETE al backend
-      const response = await fetch(`http://localhost:5000/api/autores/${ID}`, {
+      const response = await fetch(`${API_URL}/autores/${ID}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`, // Agregar token en la cabecera
@@ -222,7 +223,10 @@ const AutoresForm = () => {
                     autoHideDuration={2000}
                     onClose={() => setOpen(false)}
                   >
-                    <MaterialUI.Alert severity="error" onClose={() => setOpen(false)}>
+                    <MaterialUI.Alert
+                      severity="error"
+                      onClose={() => setOpen(false)}
+                    >
                       {errorMessage}
                     </MaterialUI.Alert>
                   </MaterialUI.Snackbar>

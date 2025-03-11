@@ -9,3 +9,4 @@ type User struct {
 	Rol          string `json:"rol"`
 	CreadoEn     string `json:"creado_en"`
 }
+

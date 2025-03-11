@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CategoriaType } from "../../interfaces/CategoriaType"; // Importa la interfaz CategoriaType
-
+import { API_URL } from "../../config/config";
 const CategoriasForm = () => {
   const [categoria, setCategoria] = useState<CategoriaType>({
     id: null,
@@ -15,7 +15,7 @@ const CategoriasForm = () => {
     const fetchCategorias = async () => {
       try {
         const token = localStorage.getItem("token"); // Obtener token
-        const response = await fetch("http://localhost:5000/api/categorias", {
+        const response = await fetch(`${API_URL}/categorias`, {
           headers: {
             Authorization: `Bearer ${token}`, // Agregar token en la cabecera
             "Content-Type": "application/json",
@@ -45,8 +45,8 @@ const CategoriasForm = () => {
 
     const method = categoria.id ? "PUT" : "POST";
     const url = categoria.id
-      ? `http://localhost:5000/api/categorias/${categoria.id}`
-      : "http://localhost:5000/api/categorias";
+      ? `${API_URL}/categorias/${categoria.id}`
+      : `${API_URL}/categorias`;
 
     try {
       const token = localStorage.getItem("token"); // Obtener token
@@ -105,7 +105,7 @@ const CategoriasForm = () => {
     console.log("eliminar:", id);
     if (id !== null) {
       const token = localStorage.getItem("token"); // Obtener token
-      const response = await fetch(`http://localhost:5000/api/categorias/${id}`, {
+      const response = await fetch(`${API_URL}/categorias/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`, // Agregar token en la

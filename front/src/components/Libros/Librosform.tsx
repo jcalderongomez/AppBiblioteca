@@ -17,6 +17,7 @@ import {
   TextField,
   SelectChangeEvent,
 } from "@mui/material";
+import { API_URL } from "../../config/config";
 
 const LibroForm = () => {
   const [libro, setLibro] = useState<LibroType>({
@@ -42,7 +43,7 @@ const LibroForm = () => {
   const fetchAutores = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/autores", {
+      const response = await fetch(`${API_URL}/autores`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -62,7 +63,7 @@ const LibroForm = () => {
   const fetchLibros = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/libros", {
+      const response = await fetch(`${API_URL}/libros`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -79,7 +80,7 @@ const LibroForm = () => {
   const fetchCategorias = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/categorias", {
+      const response = await fetch(`${API_URL}/categorias`, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -138,7 +139,7 @@ const LibroForm = () => {
     try {
       const token = localStorage.getItem("token"); // Obtener token
       // Enviar solicitud DELETE al backend
-      const response = await fetch(`http://localhost:5000/api/libros/${ID}`, {
+      const response = await fetch(`${API_URL}/${ID}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`, // Agregar token en la cabecera
@@ -168,23 +169,20 @@ const LibroForm = () => {
 
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(
-          `http://localhost:5000/api/libros/${libro.id}`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              titulo: libro.titulo,
-              id_categoria: libro.id_categoria,
-              id_autor: libro.id_autor,
-              cantidad_disponible: libro.cantidad_disponible,
-              anio_publicacion: libro.anio_publicacion,
-            }),
-          }
-        );
+        const response = await fetch(`${API_URL}/${libro.id}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            titulo: libro.titulo,
+            id_categoria: libro.id_categoria,
+            id_autor: libro.id_autor,
+            cantidad_disponible: libro.cantidad_disponible,
+            anio_publicacion: libro.anio_publicacion,
+          }),
+        });
 
         if (response.ok) {
           const updatedLibro = await response.json();
