@@ -6,13 +6,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func main() {
-	password := "Clave123"
-	hashedPassword := ObtenerPassword(password)
-	fmt.Println("Contraseña hasheada:", hashedPassword)
-}
-
-func ObtenerPassword(password string) string {
+// Exportar la función con mayúscula para que sea accesible desde otros paquetes
+func ObtainPassword(password string) string {
 	hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
 		fmt.Println("Error al generar el hash:", err)
