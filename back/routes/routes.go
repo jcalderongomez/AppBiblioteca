@@ -24,6 +24,13 @@ func SetupRoutes() *mux.Router {
 
 	// 🔹 Agregar log para confirmar que el middleware está siendo registrado
 	fmt.Println("🔒 Middleware de autenticación activado en rutas protegidas")
+	// 🔹 Rutas de Usuarios
+	protected.HandleFunc("/users", controllers.CreateUsersApp).Methods(http.MethodPost, http.MethodOptions)
+	protected.HandleFunc("/users", controllers.GetUserApps).Methods(http.MethodGet)
+	protected.HandleFunc("/users/{id:[0-9]+}", controllers.GetUserAppById).Methods(http.MethodGet)
+	protected.HandleFunc("/users/{id:[0-9]+}", controllers.UpdateUserApp).Methods(http.MethodPut)
+	protected.HandleFunc("/users/{id:[0-9]+}", controllers.DeleteUserApp).Methods(http.MethodDelete)
+	protected.HandleFunc("/users", controllers.DeleteAllUserApp).Methods(http.MethodDelete)
 
 	// 🔹 Rutas de Autores
 	protected.HandleFunc("/autores", controllers.CreateAutor).Methods(http.MethodPost)

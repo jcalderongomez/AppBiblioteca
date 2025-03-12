@@ -58,6 +58,7 @@ func CreateUsersApp(w http.ResponseWriter, r *http.Request) {
 	passwordHash := scripts.ObtenerPassword(userApp.Password_hash)
 
 	query := "INSERT INTO users_app (nombre, email, password_hash, rol) VALUES ($1, $2, $3, $4) RETURNING id"
+	fmt.Println(query)
 	err := database.DB.QueryRow(query, userApp.Nombre, userApp.Email, passwordHash, &userApp.Rol).Scan(&userApp.Id)
 	if err != nil {
 		http.Error(w, "Error al crear el usuario", http.StatusInternalServerError)

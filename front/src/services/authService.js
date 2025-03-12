@@ -1,4 +1,6 @@
-const API_URL = `${API_URL}`; // Asegúrate de que la URL sea correcta
+import { API_URL } from "../config/config";  // ✅ Importar la URL correctamente
+
+console.log("📌 URL: ", API_URL); // Verificar que la URL esté bien importada//const API_URL = "http://localhost:5000/api"; // Asegúrate de que la URL sea correcta
 
 const login = async (email, password) => {
   try {
